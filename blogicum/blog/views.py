@@ -75,7 +75,9 @@ class PostUpdateView(LoginRequiredMixin, UserIsAuthorMixin, UpdateView):
     template_name = "blog/create.html"
 
     def get_success_url(self):
-        return reverse("blog:post_detail", kwargs={"pk": self.kwargs.get("pk")})
+        return reverse(
+            "blog:post_detail", kwargs={"pk": self.kwargs.get("pk")}
+        )
 
 
 class PostDeleteView(LoginRequiredMixin, UserIsAuthorMixin, DeleteView):
@@ -89,7 +91,9 @@ class PostDeleteView(LoginRequiredMixin, UserIsAuthorMixin, DeleteView):
         return context
 
     def get_success_url(self):
-        return reverse_lazy("blog:profile", kwargs={"username": self.request.user})
+        return reverse_lazy(
+            "blog:profile", kwargs={"username": self.request.user}
+        )
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -132,7 +136,9 @@ class ProfileListView(PostListView):
     author = None
 
     def get_queryset(self):
-        self.author = get_object_or_404(User, username=self.kwargs.get("username"))
+        self.author = get_object_or_404(
+            User, username=self.kwargs.get("username")
+        )
         if self.author == self.request.user:
             return get_all_posts().filter(author=self.author)
         return super().get_queryset().filter(author=self.author)
@@ -180,7 +186,9 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("blog:post_detail", kwargs={"pk": self.kwargs.get("pk")})
+        return reverse(
+            "blog:post_detail", kwargs={"pk": self.kwargs.get("pk")}
+        )
 
 
 class CommentUpdateView(CommentMixin, UpdateView):
