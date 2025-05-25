@@ -26,7 +26,9 @@ class CommentMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse("blog:post_detail", kwargs={"pk": self.kwargs.get("pk")})
+        return reverse(
+            "blog:post_detail", kwargs={"pk": self.kwargs.get("pk")}
+        )
 
 
 class UserIsAuthorMixin:

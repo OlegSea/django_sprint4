@@ -9,7 +9,9 @@ urlpatterns = [
     path("pages/", include("pages.urls", namespace="pages")),
     path("admin/", admin.site.urls),
     path(
-        "auth/registration/", views.RegistationCreateView.as_view(), name="registration"
+        "auth/registration/",
+        views.RegistationCreateView.as_view(),
+        name="registration",
     ),
     path("auth/", include("django.contrib.auth.urls")),
 ]
