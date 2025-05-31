@@ -113,8 +113,7 @@ class EditUserFormTester(BaseFormTester):
             )
         except AuthenticatedEditException:
             raise AssertionError(
-                "Убедитесь, что пользователь может редактировать свой"
-                " профиль."
+                "Убедитесь, что пользователь может редактировать свой профиль."
             )
         except DatabaseCreationException:
             raise AssertionError(

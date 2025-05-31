@@ -95,8 +95,8 @@ class BaseFormTester(BaseTester):
             raise FormTagMissingException()
 
         self._form_tag = form_tag
-        self._action = self._form_tag.get("action", "") or (
-            response.request["PATH_INFO"]
+        self._action = (
+            self._form_tag.get("action", "") or (response.request["PATH_INFO"])
         )
         self._ModelAdapter = ModelAdapter
 
@@ -104,8 +104,7 @@ class BaseFormTester(BaseTester):
 
     @property
     @abstractmethod
-    def has_textarea(self):
-        ...
+    def has_textarea(self): ...
 
     @property
     def unauthorized_edit_redirect_cbk(self):
@@ -150,9 +149,12 @@ class BaseFormTester(BaseTester):
             redirect_to_page_repr = redirect_to_page
         elif isinstance(redirect_to_page, tuple):  # expected TitledUrlRepr
             (
-                redirect_pattern,
-                redirect_repr,
-            ), redirect_title = redirect_to_page
+                (
+                    redirect_pattern,
+                    redirect_repr,
+                ),
+                redirect_title,
+            ) = redirect_to_page
             redirect_to_page_repr = f"{redirect_title} ({redirect_repr})"
         else:
             raise AssertionError(
@@ -470,9 +472,12 @@ class SubmitTester(ABC):
             ), err_msg
             if isinstance(assert_redirect, tuple):  # expected TitledUrlRepr
                 (
-                    redirect_pattern,
-                    redirect_repr,
-                ), redirect_title = assert_redirect
+                    (
+                        redirect_pattern,
+                        redirect_repr,
+                    ),
+                    redirect_title,
+                ) = assert_redirect
                 redirect_match = False
                 for redirect_url, _ in response.redirect_chain:
                     if re.match(redirect_pattern, redirect_url):

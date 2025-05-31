@@ -63,9 +63,9 @@ def find_edit_and_delete_urls(
 
     edit_link, del_link = post_links[0], post_links[1]
     if "edit" in edit_link.get("href"):
-        assert "edit" not in del_link.get(
-            "href"
-        ), "Убедитесь, что в адресе страницы удаления поста нет слова `edit`."
+        assert "edit" not in del_link.get("href"), (
+            "Убедитесь, что в адресе страницы удаления поста нет слова `edit`."
+        )
     elif "edit" in del_link.get("href"):
         edit_link, del_link = del_link, edit_link
     else:

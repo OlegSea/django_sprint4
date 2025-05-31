@@ -50,9 +50,12 @@ class DeleteTester(BaseTester):
             redirect_to_page_repr = redirect_to_page
         elif isinstance(redirect_to_page, tuple):  # expected TitledUrlRepr
             (
-                redirect_pattern,
-                redirect_repr,
-            ), redirect_title = redirect_to_page
+                (
+                    redirect_pattern,
+                    redirect_repr,
+                ),
+                redirect_title,
+            ) = redirect_to_page
             redirect_to_page_repr = f"{redirect_title} ({redirect_repr})"
         else:
             raise AssertionError(

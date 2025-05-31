@@ -24,7 +24,7 @@ def _test_edit(
     another_user_client: Optional[django.test.Client] = None,
     unlogged_client: Optional[django.test.Client] = None,
     file_data: Optional[Dict[str, SimpleUploadedFile]] = None,
-    **update_props
+    **update_props,
 ) -> HttpResponse:
     edit_url = edit_url_vs_printed_url.key
     item_adapter = ModelAdapter(item)
@@ -40,7 +40,7 @@ def _test_edit(
             form.__class__,
             ModelAdapter=ModelAdapter,
             file_data=file_data,
-            **updated_props
+            **updated_props,
         )
 
     updated_form = create_updated_form(**update_props)
