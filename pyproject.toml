@@ -3,7 +3,7 @@ name = "django-sprint1"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = "==3.10.17"
+requires-python = "==3.10.11"
 dependencies = [
     "asgiref==3.5.2",
     "attrs==22.2.0",
