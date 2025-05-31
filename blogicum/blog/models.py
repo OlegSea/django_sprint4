@@ -123,7 +123,7 @@ class Post(TitleModel):
 
 
 class Comment(models.Model):
-    text = models.TextField(verbose_name="Коментрий")
+    text = models.TextField(verbose_name="Коментарий")
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
